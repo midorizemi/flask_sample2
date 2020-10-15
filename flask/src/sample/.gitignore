@@ -1,0 +1,4 @@
+api/instance/*
+!api/instance/.gitkeep
+*.egg-info/
+__pycache__/

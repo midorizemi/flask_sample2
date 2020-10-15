@@ -1,0 +1,13 @@
+Flask
+SQLAlchemy
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-Marshmallow
+PyMySQL
+marshmallow
+marshmallow-sqlalchemy
+flask-marshmallow
+Flask-RESTful
+Gunicorn
+pylint
+pylint-flask

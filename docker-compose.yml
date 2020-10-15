@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  flask:
+    container_name: flask_sample2
+    build:
+      context: flask
+      dockerfile: ./Dockerfile
+      args:
+        - 'project_dir=/app/'
+    ports:
+      - 5000:5000
+    links:
+      - db
+    depends_on:
+      - db
+    privileged: true
+    volumes:
+      - ./flask/src/sample/:/app/
+    tty: true
+    environment:
+        TZ: Asia/Tokyo
+        FLASK_ENV: 'development'    #デバッグモードON
+        FLASK_APP: 'api.application:app'         #起動用アプリの設定
+        DB_USER: root
+        DB_PASSWORD: root
+        DB_HOST: db
+        DB_DATABASE: test_flask_sample
+    command: flask run
+
+  db:
+    container_name: linebot-db
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: flask_sample
+      MYSQL_USER: flaker
+      MYSQL_PASSWORD: password
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./mysql/datastore/db:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/datastore/log:/var/log/mysql
+      - ./mysql/init.d:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306

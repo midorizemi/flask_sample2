@@ -1,0 +1,7 @@
+mysql/datastore/db/*
+!mysql/datastore/db/.gitkeep
+mysql/datastore/log/*
+!mysql/datastore/log/.gitkeep
+.venv/*
+__pycache__/
+.vscode
