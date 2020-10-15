@@ -11,7 +11,6 @@ flask run
 とする必要がる．
 
 もし，Python -m で事項する場合は，apiプロジェクトの`__main__.py`を実行する.
-
 ```sh
 python -m api
 ```
@@ -29,10 +28,14 @@ DB_PASSWORD=root
 DB_HOST=localhost
 DB_DATABASE=test_flask_sample
 
-##
+flask db init
+flask db migrate
+flask db update
+```
 
-UUID: （Universally Unique Identifier）とは、ソフトウェア上でオブジェクトを一意に識別するための識別子である
-
+初回はinitが必要だが，migrationsディレクトリがある場合は，必要ない．
+`migrate`がflaskで定義したモデルのマイグレーションを発行する．
+`update`がDBに変更を反映する．
 
 ## GCP FunctionでFlaskを使うとき
 基本的には，1ファンクション1モジュールであると考える． [詳細](https://cloud.google.com/functions/docs/writing?hl=ja#functions-writing-helloworld-http-python)
@@ -136,3 +139,9 @@ GCPのサービスを考える．
 Flaskが提供しているBluePrintを利用する．
 - [参考](https://qiita.com/shimajiri/items/fb7d1d58de0b0d171c88)
 - [公式参考](https://msiz07-flask-docs-ja.readthedocs.io/ja/latest/blueprints.html#blueprints)
+
+
+## 関連メモ
+
+UUID: （Universally Unique Identifier）とは、ソフトウェア上でオブジェクトを一意に識別するための識別子である
+
